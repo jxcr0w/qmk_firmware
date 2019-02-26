@@ -28,6 +28,8 @@ doxygen/
 .DS_STORE
 /util/wsl_downloaded
 /util/win_downloaded
+/keyboards/*
+!dz60
 /keyboards/*/Makefile
 /keyboards/*/*/Makefile
 /keyboards/*/*/*/Makefile
