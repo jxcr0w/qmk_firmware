@@ -56,3 +56,5 @@ AUDIO_ENABLE = no
 RGBLIGHT_ENABLE = yes
 
 LAYOUTS = 60_ansi 60_iso 60_hhkb
+
+UNICODE_ENABLE = yes
