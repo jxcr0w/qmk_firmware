@@ -14,3 +14,4 @@ AUDIO_ENABLE = no           # Audio output
 SLEEP_LED_ENABLE = no  # Breathing sleep LED during USB suspend
 LAYOUTS = 60_ansi 60_iso 60_hhkb
 UNICODE_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
