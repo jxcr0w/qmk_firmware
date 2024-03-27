@@ -1,7 +1,11 @@
 #include QMK_KEYBOARD_H
 
 enum keycodes {
-    DYNAMIC_MACRO_RANGE = SAFE_RANGE
+    DYNAMIC_MACRO_RANGE = SAFE_RANGE,
+    W_UML_A,
+    W_UML_SA,
+    W_UML_O,
+    W_UML_SO,
 };
 
 void matrix_init_user(void) {
@@ -16,11 +20,6 @@ void matrix_init_user(void) {
 #define _MEDIA 5
 #define _KBD 6
 #define _QWERTY 7
-
-#define W_UML_A RALT(KC_Q)
-#define W_UML_SA RALT(S(KC_Q))
-#define W_UML_O RALT(KC_P)
-#define W_UML_SO RALT(S(KC_P))
 
 #define U_UML_A UC(0x00E4)
 #define U_UML_SA UC(0x00C4)
@@ -95,3 +94,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     return state;
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    if (record->event.pressed) {
+        switch (keycode) {
+            case W_UML_A:
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_8)));
+                return false;
+            case W_UML_SA:
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_9) SS_TAP(X_KP_6)));
+                return false;
+            case W_UML_O:
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_6)));
+                return false;
+            case W_UML_SO:
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_4)));
+                return false;
+        }
+    }
+
+    return true;
+}
