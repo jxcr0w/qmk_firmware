@@ -95,19 +95,31 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 };
 
+void check_numlock(void) {
+    led_t led_state = host_keyboard_led_state();
+
+    if (!(led_state.num_lock)){
+        tap_code16(KC_NUM_LOCK);
+    }
+};
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (record->event.pressed) {
         switch (keycode) {
             case W_UML_A:
+                check_numlock();
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_8)));
                 return false;
             case W_UML_SA:
+                check_numlock();
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_9) SS_TAP(X_KP_6)));
                 return false;
             case W_UML_O:
+                check_numlock();
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_6)));
                 return false;
             case W_UML_SO:
+                check_numlock();
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_4)));
                 return false;
         }
